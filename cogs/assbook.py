@@ -50,7 +50,7 @@ class Assbook(commands.Cog):
                 f"{self.base_url}/blogs/{user}/{blog}"
             ) as r:
                 blog = await r.json()
-                embed = discord.Embed(description=blog["data"])
+                embed = discord.Embed(description=blog["description"])
                 embed.add_field(name="ID", value=blog["id"])
                 embed.set_author(name=blog["name"])
                 await ctx.reply(embed=embed)
@@ -59,7 +59,7 @@ class Assbook(commands.Cog):
                 blogs = await r.json()
                 embed = discord.Embed(title=f"Blogs {f'from {user}' if user else ''}")
                 for blog in blogs:
-                    embed.add_field(name=blog["name"], value=blog["data"])
+                    embed.add_field(name=blog["name"], value=blog["description"])
                 await ctx.reply(embed=embed)
 
     @commands.command()
